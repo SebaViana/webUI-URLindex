@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Grafana",
+        "url": "http://localhost:3000"
+    },
+    {
+        "name": "Prometheus",
+        "url": "http://localhost:9090"
+    }
+]

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Container UI Dashboard</title>
+</head>
+<body>
+    <h1>Container UI Dashboard</h1>
+    <ul id="containerLinks">
+        <!-- Links will be added dynamically here -->
+    </ul>
+    <script>
+        fetch('urls.json')
+            .then(response => response.json())
+            .then(data => {
+                const containerLinks = document.getElementById('containerLinks');
+                data.forEach(entry => {
+                    const link = document.createElement('a');
+                    link.href = entry.url;
+                    link.textContent = entry.name;
+
+                    const listItem = document.createElement('li');
+                    listItem.appendChild(link);
+
+                    containerLinks.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
