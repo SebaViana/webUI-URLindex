@@ -9,7 +9,7 @@
         <!-- Links will be added dynamically here -->
     </ul>
     <script>
-        fetch('urls.json')
+        fetch('json/urls.json')
             .then(response => response.json())
             .then(data => {
                 const containerLinks = document.getElementById('containerLinks');
