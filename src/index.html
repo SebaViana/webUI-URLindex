@@ -15,16 +15,15 @@
                 const containerLinks = document.getElementById('containerLinks');
                 data.forEach(entry => {
                     const link = document.createElement('a');
-                    link.href = ''; // Initialize the href attribute
+                    link.href = entry.url;
+                    link.textContent = entry.name;
 
-                    // Set the click event listener
+                    // Click event listener to links
                     link.addEventListener('click', function(event) {
                         event.preventDefault();
                         redirectToUrl(entry.url);
                     });
 
-                    // Set link text and create list item
-                    link.textContent = entry.name;
                     const listItem = document.createElement('li');
                     listItem.appendChild(link);
 
@@ -33,11 +32,11 @@
             })
             .catch(error => console.error('Error fetching data:', error));
 
-        // Redirect using current URL and port from JSON
-        function redirectToUrl(port) {
+        // Redirect using current URL
+        function redirectToUrl(url) {
             const currentUrl = window.location.href;
             const basePath = currentUrl.split('/')[2];
-            const newUrl = `http://${basePath}:${port}`; // Construct the new URL
+            const newUrl = basePath + url;
             window.location.href = newUrl;
         }
     </script>
