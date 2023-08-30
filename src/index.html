@@ -18,6 +18,12 @@
                     link.href = entry.url;
                     link.textContent = entry.name;
 
+                    // Click event listener to links
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        redirectToUrl(entry.url);
+                    });
+
                     const listItem = document.createElement('li');
                     listItem.appendChild(link);
 
@@ -25,6 +31,14 @@
                 });
             })
             .catch(error => console.error('Error fetching data:', error));
+
+        // Redirect using current URL
+        function redirectToUrl(url) {
+            const currentUrl = window.location.href;
+            const basePath = currentUrl.split('/')[2];
+            const newUrl = basePath + url;
+            window.location.href = newUrl;
+        }
     </script>
 </body>
 </html>
