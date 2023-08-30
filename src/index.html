@@ -13,17 +13,19 @@
             .then(response => response.json())
             .then(data => {
                 const containerLinks = document.getElementById('containerLinks');
+
                 data.forEach(entry => {
                     const link = document.createElement('a');
-                    link.href = entry.url;
-                    link.textContent = entry.name;
+                    link.href = ''; // Initialize the href attribute
 
-                    // Click event listener to links
+                    // Set the click event listener
                     link.addEventListener('click', function(event) {
                         event.preventDefault();
                         redirectToUrl(entry.url);
                     });
 
+                    // Set link text and create list item
+                    link.textContent = entry.name;
                     const listItem = document.createElement('li');
                     listItem.appendChild(link);
 
@@ -32,11 +34,10 @@
             })
             .catch(error => console.error('Error fetching data:', error));
 
-        // Redirect using current URL
-        function redirectToUrl(url) {
-            const currentUrl = window.location.href;
-            const basePath = currentUrl.split('/')[2];
-            const newUrl = basePath + url;
+        // Redirect using port number and current host
+        function redirectToUrl(port) {
+            const currentHost = window.location.hostname; // Get the current host (IP address)
+            const newUrl = `http://${currentHost}:${port}`; // Construct the new URL
             window.location.href = newUrl;
         }
     </script>
