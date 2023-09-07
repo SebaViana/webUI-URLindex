@@ -1,7 +1,9 @@
 FROM nginx:alpine
 
-COPY src/index.html /usr/share/nginx/html/
-COPY json/urls.json /usr/share/nginx/html/json/
+WORKDIR /usr/share/nginx/html
+
+COPY src/index.html .
+COPY json/urls.json ./json/
 
 EXPOSE 80
 
